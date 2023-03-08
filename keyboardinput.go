@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 )
-//коммент для тестов
+//коммент для тестов 2
 func GetFloat() (float64, error) {
 	reader := bufio.NewReader(os.Stdin)
 	getInputFronKeyb, err := reader.ReadString('\n')
