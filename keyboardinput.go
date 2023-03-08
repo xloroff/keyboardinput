@@ -7,7 +7,8 @@ import (
 	"strconv"
 	"strings"
 )
-//коммент для тестов 2
+
+// GetFloat функция оцень важная и полезная
 func GetFloat() (float64, error) {
 	reader := bufio.NewReader(os.Stdin)
 	getInputFronKeyb, err := reader.ReadString('\n')
