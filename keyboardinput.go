@@ -1,3 +1,4 @@
+//Пакет ввода с клавиатуры текста и конвертации его в float64
 package keyboardinput
 
 import (
