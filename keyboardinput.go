@@ -8,8 +8,8 @@ import (
 )
 
 // Readdata функци по чтению данных
-func Readdata(fileName string) ([3]float64, error) {
-	var myaso [3]float64
+func Readdata(fileName string) ([]float64, error) {
+	var myaso []float64
 	file, err := os.Open(fileName)
 	if err != nil {
 		return myaso, err
