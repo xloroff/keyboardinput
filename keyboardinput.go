@@ -16,15 +16,16 @@ func Readdata(fileName string) ([]float64, error) {
 	}
 	scanner := bufio.NewScanner(file)
 
-	i := 0
+	//i := 0
 	for scanner.Scan() {
 		stroka := scanner.Text()
-		myaso[i], err = strconv.ParseFloat(stroka, 64)
+		tempnum, err := strconv.ParseFloat(stroka, 64)
+		myaso = append(myaso, tempnum)
 		if err != nil {
 			return myaso, err
 		}
-		i++
 	}
+
 	err = file.Close()
 	if err != nil {
 		return myaso, err
