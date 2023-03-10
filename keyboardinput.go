@@ -1,30 +1,38 @@
-//Пакет ввода с клавиатуры текста и конвертации его в float64
+// keyboardinput Пакет который позволяет читать данные из файла
 package keyboardinput
 
 import (
 	"bufio"
-	"errors"
 	"os"
 	"strconv"
-	"strings"
 )
 
-// GetFloat функция оцень важная и полезная
-func GetFloat() (float64, error) {
-	reader := bufio.NewReader(os.Stdin)
-	getInputFronKeyb, err := reader.ReadString('\n')
+// Readdata функци по чтению данных
+func Readdata(fileName string) ([3]float64, error) {
+	var myaso [3]float64
+	file, err := os.Open(fileName)
 	if err != nil {
-		error := errors.New("Что-то не то прилетело в ввод!")
-		return 0, error
+		return myaso, err
+	}
+	scanner := bufio.NewScanner(file)
+
+	i := 0
+	for scanner.Scan() {
+		stroka := scanner.Text()
+		myaso[i], err = strconv.ParseFloat(stroka, 64)
+		if err != nil {
+			return myaso, err
+		}
+		i++
+	}
+	err = file.Close()
+	if err != nil {
+		return myaso, err
 	}
 
-	getInputFronKeyb = strings.TrimSpace(getInputFronKeyb)
-	number, err := strconv.ParseFloat(getInputFronKeyb, 64)
-	if err != nil {
-		error := errors.New("Что-то не то при конвертации ввода в число!")
-		return 0, error
+	if scanner.Err() != nil {
+		return myaso, scanner.Err()
 	}
 
-	return number, nil
-
+	return myaso, nil
 }
