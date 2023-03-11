@@ -12,18 +12,17 @@ func Readdata(fileName string) ([]float64, error) {
 	var myaso []float64
 	file, err := os.Open(fileName)
 	if err != nil {
-		return myaso, err
+		return nil, err
 	}
 	scanner := bufio.NewScanner(file)
 
-	//i := 0
 	for scanner.Scan() {
 		stroka := scanner.Text()
 		tempnum, err := strconv.ParseFloat(stroka, 64)
-		myaso = append(myaso, tempnum)
 		if err != nil {
-			return myaso, err
+			return nil, err
 		}
+		myaso = append(myaso, tempnum)
 	}
 
 	err = file.Close()
@@ -32,7 +31,7 @@ func Readdata(fileName string) ([]float64, error) {
 	}
 
 	if scanner.Err() != nil {
-		return myaso, scanner.Err()
+		return nil, scanner.Err()
 	}
 
 	return myaso, nil
